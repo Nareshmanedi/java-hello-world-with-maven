@@ -4,9 +4,11 @@ phases:
   install:
     runtime-versions:
        java: corretto8
+       docker: 18
     commands:
         - yum update -y
         - yum install -y maven
+        - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2& - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
        - java -version
@@ -15,7 +17,7 @@ phases:
   build:
     commands:
       - mvn clean install
-      - docker build .
+      - docker build -t nareshit67/cicd:newservice1 .
       - docker push nareshit67/cicd:newservice1
 artifacts:
   files:
