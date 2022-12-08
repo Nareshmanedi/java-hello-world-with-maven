@@ -8,7 +8,7 @@ phases:
     commands:
         - yum update -y
         - yum install -y maven
-        - yum install docker
+        - yum install -y docker
   pre_build:
     commands:
        - java -version
