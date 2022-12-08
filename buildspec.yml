@@ -8,12 +8,14 @@ phases:
     commands:
         - yum update -y
         - yum install -y maven
-        - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2& - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+        - yum install docker
   pre_build:
     commands:
        - java -version
        - mvn -version
        - docker login -u nareshit67 -p nareshit67
+       - systemctl enable docker.service
+       - systemctl start docker.service
   build:
     commands:
       - mvn clean install
