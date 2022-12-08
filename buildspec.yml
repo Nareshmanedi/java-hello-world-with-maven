@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+       java: openjdk8
+    commands:
+        - yum update -y
+        - yum install -y maven
+  pre_build:
+    commands:
+       - java -version
+       - mvn -version
+  build:
+    commands:
+      - mvn clean install
+artifacts:
+  files:
+    - '**/*'
