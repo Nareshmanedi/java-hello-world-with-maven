@@ -8,14 +8,11 @@ phases:
     commands:
         - yum update -y
         - yum install -y maven
-        - yum install -y docker
   pre_build:
     commands:
        - java -version
        - mvn -version
        - docker login -u nareshit67 -p nareshit67
-       - systemctl enable docker.service
-       - systemctl start docker.service
   build:
     commands:
       - mvn clean install
