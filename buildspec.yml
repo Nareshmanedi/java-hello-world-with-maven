@@ -12,11 +12,10 @@ phases:
        - docker login -u nareshit67 -p nareshit67
   build:
     commands:
-      - pwd
       - mvn clean install
-      - pwd
-      - docker build -t nareshit67/cicd:newservice1 .
-      - docker push nareshit67/cicd:newservice1
+      - docker build -t nareshit67/cicd:semanalysis .
+      - docker push nareshit67/cicd:semanalysis
+      - docker run -d-p 8080 nareshit67/cicd:semanalysis
 artifacts:
   files:
     - target/jb-hello-world-maven-0.2.0.jar
