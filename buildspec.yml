@@ -5,9 +5,6 @@ phases:
     runtime-versions:
        java: corretto8
        docker: 18
-    commands:
-        - yum update -y
-        - yum install -y maven
   pre_build:
     commands:
        - java -version
@@ -15,7 +12,9 @@ phases:
        - docker login -u nareshit67 -p nareshit67
   build:
     commands:
+      - pwd
       - mvn clean install
+      - pwd
       - docker build -t nareshit67/cicd:newservice1 .
       - docker push nareshit67/cicd:newservice1
 artifacts:
