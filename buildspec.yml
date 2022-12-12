@@ -16,7 +16,7 @@ phases:
       - docker build -t nareshit67/cicd:semanalysis .
       - docker push nareshit67/cicd:semanalysis
       - docker images
-      - docker run -d -p 8080:8080 nareshit67/cicd:semanalysis
+      - docker run -d -p 8067:8067 nareshit67/cicd:semanalysis
       - docker ps
 artifacts:
   files:
